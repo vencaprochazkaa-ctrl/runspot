@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Runspot — Find your run</title>
+<title>Runspot — Kde dneska poběžíš?</title>
+<meta name="description" content="Running cluby po celé České republice na jednom místě. Zjisti kde a kdy vybíhají, přidej se ke klubu ve svém městě. Praha, Brno, Ostrava, Plzeň a další.">
+<meta name="keywords" content="running club, running kluby, běžecký klub, Praha, Brno, Ostrava, Plzeň, kde běhat, běhání, skupinový běh">
+<meta name="author" content="Runspot">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://runspot.eu">
+
+<!-- Open Graph (sdílení na sociálních sítích) -->
+<meta property="og:title" content="Runspot — Kde dneska poběžíš?">
+<meta property="og:description" content="Running cluby po celé České republice na jednom místě. Zjisti kde a kdy vybíhají a přidej se.">
+<meta property="og:url" content="https://runspot.eu">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Runspot">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Runspot — Kde dneska poběžíš?">
+<meta name="twitter:description" content="Running cluby po celé České republice na jednom místě.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -423,6 +441,12 @@ textarea{resize:vertical;min-height:76px}
   font-size:13px;color:var(--accent);margin-top:12px;line-height:1.5;
 }
 
+.gdpr-note{
+  font-size:11px;color:var(--muted2);line-height:1.6;
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--border);
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--border);
@@ -648,15 +672,34 @@ footer{
         <div class="fg-full"><label data-i18n="f_desc">Krátký popis</label><textarea id="f-desc" placeholder="Pár vět o vašem klubu — kdo jste, koho vítáte…"></textarea></div>
       </div>
       <button class="submit-btn" onclick="submitClub()" data-i18n="f_submit">Odeslat žádost →</button>
+      <p class="gdpr-note" data-i18n="gdpr_note">Odesláním souhlasíš se zveřejněním názvu klubu, města a kontaktu na Runspot. Žádné další údaje nepředáváme třetím stranám.</p>
       <div class="success-msg" id="success-msg" data-i18n="f_success">✓ Žádost přijata! Klub schválíme a zveřejníme do 24 hodin. Vítej na Runspotu.</div>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="foot-l"><strong>Runspot</strong> — <span data-i18n="footer_tagline">Najdi svůj výběh po celé České republice.</span></div>
-  <div class="foot-r"><span data-i18n="footer_community">Komunitní projekt</span> · <a href="mailto:vencaprochazkaa@email.cz" style="color:var(--accent);text-decoration:none">vencaprochazkaa@email.cz</a></div>
+  <div class="foot-l"><strong>Runspot</strong></div>
+  <div class="foot-r">
+    <span data-i18n="footer_community">Komunitní projekt</span> ·
+    <a href="#" onclick="showPrivacy();return false;" style="color:var(--muted);text-decoration:none" data-i18n="gdpr_privacy">Zásady ochrany údajů</a> ·
+    <a href="mailto:vencaprochazkaa@email.cz" style="color:var(--accent);text-decoration:none">vencaprochazkaa@email.cz</a>
+  </div>
 </footer>
+
+<!-- PRIVACY MODAL -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;padding:1.5rem;overflow-y:auto">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:2rem;max-width:520px;width:100%;margin:4rem auto;position:relative">
+    <button onclick="hidePrivacy()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1">✕</button>
+    <div style="font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-.02em;margin-bottom:1.2rem;color:var(--text)" data-i18n="gdpr_privacy">Zásady ochrany údajů</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.85">
+      <p style="margin-bottom:.9rem" data-i18n="priv_p1">Runspot je nekomerční komunitní projekt. Při přidávání klubu prostřednictvím formuláře shromažďujeme: název klubu, město, místo srazu, čas, styl běhu a kontaktní informace (Instagram nebo web).</p>
+      <p style="margin-bottom:.9rem" data-i18n="priv_p2">Tyto informace jsou zveřejněny na stránce runspot.eu za účelem, ke kterému byly poskytnuty — aby vás mohli najít ostatní běžci. Žádné osobní údaje nepředáváme třetím stranám ani je nevyužíváme k marketingovým účelům.</p>
+      <p style="margin-bottom:.9rem" data-i18n="priv_p3">Formulář zpracovává služba Formspree (formspree.io), která se řídí vlastními zásadami ochrany údajů dostupnými na jejich webu.</p>
+      <p data-i18n="priv_p4">Chcete-li své údaje upravit nebo odstranit, napište na <a href="mailto:vencaprochazkaa@email.cz" style="color:var(--accent);text-decoration:none">vencaprochazkaa@email.cz</a>. Žádosti vyřizujeme do 7 pracovních dní.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 // ─── I18N ────────────────────────────────────────────────────────────────────
@@ -695,7 +738,12 @@ const T = {
     f_submit:'Odeslat žádost →',
     f_success:'✓ Žádost přijata! Klub schválíme a zveřejníme do 24 hodin. Vítej na Runspotu.',
     f_alert:'Vyplň prosím název klubu, město a místo srazu.',
-    footer_tagline:'Kde dneska poběžíš? Najdi svůj klub.',
+    gdpr_note:'Odesláním souhlasíš se zveřejněním názvu klubu, města a kontaktu na Runspot. Žádné další údaje nepředáváme třetím stranám.',
+    gdpr_privacy:'Zásady ochrany údajů',
+    priv_p1:'Runspot je nekomerční komunitní projekt. Při přidávání klubu prostřednictvím formuláře shromažďujeme: název klubu, město, místo srazu, čas, styl běhu a kontaktní informace (Instagram nebo web).',
+    priv_p2:'Tyto informace jsou zveřejněny na stránce runspot.eu za účelem, ke kterému byly poskytnuty — aby vás mohli najít ostatní běžci. Žádné osobní údaje nepředáváme třetím stranám ani je nevyužíváme k marketingovým účelům.',
+    priv_p3:'Formulář zpracovává služba Formspree (formspree.io), která se řídí vlastními zásadami ochrany údajů dostupnými na jejich webu.',
+    priv_p4:'Chcete-li své údaje upravit nebo odstranit, napište na <a href="mailto:vencaprochazkaa@email.cz" style="color:var(--accent);text-decoration:none">vencaprochazkaa@email.cz</a>. Žádosti vyřizujeme do 7 pracovních dní.',
     footer_community:'Komunitní projekt',
     about_title:'O projektu',
     about_h2:'Running clubů je víc než dost.<br><span>Teď jsou konečně na jednom místě.</span>',
@@ -742,7 +790,12 @@ const T = {
     f_submit:'Submit your club →',
     f_success:'✓ Request received! We\'ll review and publish your club within 24 hours. Welcome to Runspot.',
     f_alert:'Please fill in club name, city and meeting spot.',
-    footer_tagline:'Find your run across the Czech Republic.',
+    gdpr_note:'By submitting you agree to your club name, city and contact being published on Runspot. No data is shared with third parties.',
+    gdpr_privacy:'Privacy policy',
+    priv_p1:'Runspot is a non-commercial community project. When adding a club via the form we collect: club name, city, meeting spot, time, run style and contact info (Instagram or website).',
+    priv_p2:'This information is published on runspot.eu for the purpose it was provided — so other runners can find you. We do not share personal data with third parties or use it for marketing.',
+    priv_p3:'The form is processed by Formspree (formspree.io), which has its own privacy policy available on their website.',
+    priv_p4:'To update or remove your data, email <a href="mailto:vencaprochazkaa@email.cz" style="color:var(--accent);text-decoration:none">vencaprochazkaa@email.cz</a>. We handle requests within 7 working days.',
     footer_community:'Community project',
     about_title:'About',
     about_h2:'There are plenty of running clubs.<br><span>Now they\'re finally in one place.</span>',
@@ -1099,6 +1152,22 @@ function showMapTooltip(e, city) {
 function hideMapTooltip() {
   document.getElementById('map-tooltip').style.display = 'none';
 }
+
+function showPrivacy() {
+  const m = document.getElementById('privacy-modal');
+  m.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function hidePrivacy() {
+  document.getElementById('privacy-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close modal on backdrop click
+document.getElementById('privacy-modal').addEventListener('click', function(e) {
+  if (e.target === this) hidePrivacy();
+});
 
 function showTab(name) {
   ['schedule','map','clubs'].forEach(t => {
